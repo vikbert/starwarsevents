@@ -7,6 +7,9 @@
 .event-show .button {
     font-size:14px;
     padding:3px 8px;
+    position: relative;
+    top: -6px;
+    right: -60px;
 }
 .event-show {
     width:900px;
@@ -17,6 +20,9 @@
     margin-bottom:20px;
     float:left;
     width:100%;
+}
+.event-details {
+    padding-left: 30px !important;
 }
 
 .event-show article .map-container {
