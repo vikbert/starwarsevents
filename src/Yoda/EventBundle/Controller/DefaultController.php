@@ -3,27 +3,29 @@
 namespace Yoda\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Template("EventBundle:Default:index.html.twig")
+     * @param $count
+     * @param $firstName
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction($count, $firstName)
     {
-        // these 2 lines are equivalent
-        // $em = $this->container->get('doctrine')->getManager();
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('EventBundle:Event');
 
         $event = $repo->findOneBy(array(
-            'name' => 'Darth\'s surprise birthday party',
+            'name' => 'Rebellion Fundraiser Bake Sale!',
         ));
 
-        return $this->render(
-            'EventBundle:Default:index.html.twig',
-            array(
-                'name' => $firstName,
-                'count' => $count,
-                'event'=> $event,
-            )
+        return array(
+            'name' => $firstName,
+            'count' => $count,
+            'event'=> $event,
         );
     }
 }
