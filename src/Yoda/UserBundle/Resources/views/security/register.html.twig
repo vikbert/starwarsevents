@@ -16,10 +16,12 @@
             <hr>
 
             <form action="{{ path('user_register') }}" method="post">
+                {{ form_errors(form) }}
                 {{ form_row(form.username) }}
-                {{ form_row(form.password) }}
                 {{ form_row(form.email) }}
-
+                {{ form_row(form.password.first, {'label': 'Password'}) }}
+                {{ form_row(form.password.second, {'label': 'Repeat Password*'}) }}
+                {{ form_row(form._token) }}
                 <hr>
                 <input type="submit" value="Register!" class="register-submit-button btn btn-primary pull-right"/>
             </form>
