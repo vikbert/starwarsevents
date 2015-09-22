@@ -34,6 +34,7 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface
         $user1->setUsername('vikbert');
         $user1->setPassword($this->encodePassword($user1, 'pass'));
         $user1->setIsActive(true);
+        $user1->setEmail('me@me.com');
         $manager->persist($user1);
         
         $user2 = new User();

@@ -7,8 +7,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        our_database_users:
-            entity: { class: UserBundle:User, property: username }
+        secured_database_users:
+            entity:
+                class: UserBundle:User
 
     firewalls:
         secured_area:
