@@ -26,7 +26,10 @@ class EventController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
+
         $entities = $em->getRepository('EventBundle:Event')->findAll();
+
 
         return array(
             'entities' => $entities,
