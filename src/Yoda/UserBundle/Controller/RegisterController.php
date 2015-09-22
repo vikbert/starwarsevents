@@ -25,7 +25,9 @@ class RegisterController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $form = $this->createFormBuilder()
+        $form = $this->createFormBuilder(new User(), array(
+            'data_class' => 'Yoda\UserBundle\Entity\User'
+        ))
             ->add('username', 'text')
             ->add('email', 'email')
             ->add('password', 'repeated', array('type' => 'password'))
@@ -50,7 +52,7 @@ class RegisterController extends Controller
             return false;
         }
 
-        $userEntity = $this->initializedNewUser($form->getData());
+        $userEntity = $this->initUser($form->getData());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($userEntity);
@@ -60,18 +62,15 @@ class RegisterController extends Controller
     }
 
     /**
-     * @param array $data
+     * @param User $newUser
      * @return User
      */
-    private function initializedNewUser(array $data)
+    private function initUser(User $newUser)
     {
         $utils = new UserUtils($this->container);
 
-        $newUser = new User();
-        $newUser->setUsername($data['username']);
-        $newUser->setEmail($data['email']);
         $newUser->setIsActive(false);
-        $newUser->setPassword($utils->encodePassword($newUser, $data['password']));
+        $newUser->setPassword($utils->encodePassword($newUser, $newUser->getPassword()));
 
         return $newUser;
     }
