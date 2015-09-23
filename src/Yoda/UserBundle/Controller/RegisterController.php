@@ -9,6 +9,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Yoda\UserBundle\Entity\User;
 use Yoda\UserBundle\UserUtils;
+use Yoda\UserBundle\Form\RegisterFormType;
 
 /**
  * Class RegisterController
@@ -25,13 +26,10 @@ class RegisterController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $form = $this->createFormBuilder(new User(), array(
-            'data_class' => 'Yoda\UserBundle\Entity\User'
-        ))
-            ->add('username', 'text')
-            ->add('email', 'email')
-            ->add('password', 'repeated', array('type' => 'password'))
-            ->getForm();
+        $user = new User();
+        $user->setUsername('Your_user_name');
+
+        $form = $this->createForm(new RegisterFormType(), $user);
 
         if ($this->handleFormRequest($form, $request) === true) {
             return $this->redirect($this->generateUrl('login_form'));

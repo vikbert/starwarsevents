@@ -19,8 +19,8 @@
                 {{ form_errors(form) }}
                 {{ form_row(form.username) }}
                 {{ form_row(form.email) }}
-                {{ form_row(form.password.first, {'label': 'Password'}) }}
-                {{ form_row(form.password.second, {'label': 'Repeat Password*'}) }}
+                {{ form_row(form.plainPassword.first, {'label': 'Password'}) }}
+                {{ form_row(form.plainPassword.second, {'label': 'Repeat Password*'}) }}
                 {{ form_row(form._token) }}
                 <hr>
                 <input type="submit" value="Register!" class="register-submit-button btn btn-primary pull-right"/>

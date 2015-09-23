@@ -58,6 +58,13 @@ class User implements AdvancedUserInterface
     private $isActive;
 
     /**
+     * @var string
+     */
+    private $plainPassword;
+
+
+
+    /**
      * Get id
      *
      * @return integer
@@ -173,6 +180,24 @@ class User implements AdvancedUserInterface
     }
 
     /**
+     * Just store the plain password temporarily
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
      * @return null
      */
     public function getSalt()
@@ -188,7 +213,7 @@ class User implements AdvancedUserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        $this->setPlainPassword(null);
     }
 
     /**
