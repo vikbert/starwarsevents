@@ -45,6 +45,12 @@ php app/console doctrine:database:create
 php app/console doctrine:schema:create
 ```
 
+## Load the test Data: `users` and` `events`
+```
+php app/console doctrine:fixtures:load
+```
+> login data: vikbert@pass
+
 ## start web server
 ```
 php app/console server:run
